@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>宝宝出生日期计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .custom-input {
+            display: inline-block;
+            position: relative;
+        }
+
+        .custom-input input {
+            padding: 10px 40px 10px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .custom-input .icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<h1>宝宝出生日期计算器</h1>
+
+<div class="container">
+    <div class="form-group">
+        <label for="birthdate-input">宝宝出生日期：</label>
+        <div class="custom-input">
+            <input type="datetime-local" id="birthdate-input" value="2023-08-16T18:00">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button onclick="calculateAge()">计算</button>
+    </div>
+
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    function calculateAge() {
+        var birthdate = new Date(document.getElementById("birthdate-input").value);
+        var now = new Date();
+
+        var difference = Math.abs(now - birthdate) / 1000;
+
+        var days = Math.floor(difference / (24 * 60 * 60));
+        difference -= days * (24 * 60 * 60);
+
+        var hours = Math.floor(difference / (60 * 60));
+        difference -= hours * (60 * 60);
+
+        var minutes = Math.floor(difference / 60);
+        difference -= minutes * 60;
+
+        var seconds = Math.floor(difference);
+
+        var resultElement = document.getElementById("result");
+        resultElement.innerHTML = `宝宝的年龄是： ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+    }
+</script>
+</body>
+</html>
