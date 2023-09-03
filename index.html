@@ -101,21 +101,26 @@
         var birthdate = new Date(document.getElementById("birthdate-input").value);
         var now = new Date();
 
-        var difference = Math.abs(now - birthdate) / 1000;
+        if (birthdate > now) {
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = '出生日期不能大于当前时间';
+        } else {
+            var difference = Math.abs(now - birthdate) / 1000;
 
-        var days = Math.floor(difference / (24 * 60 * 60));
-        difference -= days * (24 * 60 * 60);
+            var days = Math.floor(difference / (24 * 60 * 60));
+            difference -= days * (24 * 60 * 60);
 
-        var hours = Math.floor(difference / (60 * 60));
-        difference -= hours * (60 * 60);
+            var hours = Math.floor(difference / (60 * 60));
+            difference -= hours * (60 * 60);
 
-        var minutes = Math.floor(difference / 60);
-        difference -= minutes * 60;
+            var minutes = Math.floor(difference / 60);
+            difference -= minutes * 60;
 
-        var seconds = Math.floor(difference);
+            var seconds = Math.floor(difference);
 
-        var resultElement = document.getElementById("result");
-        resultElement.innerHTML = `宝宝的年龄是： ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = `宝宝的年龄是： ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+        }
     }
 </script>
 </body>
